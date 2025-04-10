@@ -32,8 +32,8 @@ def genTextSimple(model, idx, maxNewTokens, contextSize, temp = 0.0, topK = None
 		if idxNext == eosId:
 			break
 		generated = torch.cat((generated, idxNext), dim = 1)
-		generated = geterated[len(idx):]
-
+	
+	generated = generated[len(idx):]
 	return generated
 
 def formatInput(entry):
@@ -183,13 +183,14 @@ if __name__ == "__main__":
 	if os.path.exists(fileName):
 		checkpoint = torch.load(fileName)
 		model.load_state_dict(checkpoint["modelStateDict"])
-
-		
+	
 
 	tokenizer = AutoTokenizer.from_pretrained(modelName)
 	optimizer = torch.optim.AdamW(model.parameters(), lr = args.lr, weight_decay = 0.1)
 
 	config = AutoConfig.from_pretrained(modelName)
+
+	customizedCollateFn = partial(customCollate, device = device, textToToken)
 
 	with open(args.dataFile, "r") as f:
 		data = json.load(f)
