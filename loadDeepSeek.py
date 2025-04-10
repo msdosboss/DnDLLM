@@ -33,7 +33,7 @@ def genTextSimple(model, idx, maxNewTokens, contextSize, temp = 0.0, topK = None
 			break
 		generated = torch.cat((generated, idxNext), dim = 1)
 	
-	generated = generated[len(idx):]
+	generated = generated[:, idx.shape[1]:]
 	return generated
 
 def formatInput(entry):
