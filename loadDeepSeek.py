@@ -1,9 +1,62 @@
+import time
 import os
 import torch
 import json
+import argparse
+from functools import partial
+from torch.utils.data import Dataset, DataLoader
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import AutoConfig
 
+class InstructionDataset(Dataset):
+	def __init__(self, data, tokenizer):
+		self.data = data
+		self.encodedTexts = []
+		for entry in data:
+			instructionAndInput = formatInput(entry)
+			responseText = entry['output']
+			fullText = instructionAndInput + responseText 
+			self.encodedTexts = tokenizer.encode(fullText)
+
+	def __getitem__(self, index):
+		return self.encodedTexts[index]
+
+	def __len__(self):
+		return len(self.data)
+
+def customCollate(batch, 
+		padTokenId= 50256,	#this needs to be the tokenized version of "<|endoftext|>"
+		ignoreIndex = -100,
+		allowedMaxLen = None,
+		device = "cuda"):
+	batchMaxLen = max(len(item) + 1 for item in batch)
+	inputsList, targetsList= []
+
+	for item in batch:
+		newItem = item.copy()
+		newItem += [padTokenId]
+
+		padded = (
+			newItem + [padTokenId] * (batchMaxLen - len(newItem))
+		)
+		inputs = torch.tensor(padded[:-1])
+		targets = torch.tensor(padded[1:])
+
+		mask = targets == padTokenId
+		indices = torch.nonzero(mask).squeeze()
+		if indices.numel() > 1:
+			targets[indices[1:]] = ignoreIndex
+
+		if allowedMaxLen is not None:
+			targets = targets[:allowedMaxLen]
+			inputs = inputs[:allowedMaxLen]
+
+		inputsList.append(inputs)
+		targetsList.append(targets)
+	
+	inputsTensor = torch.stack(inputsList).to(device)
+	targetsTensor = torch.stack(targetsList).to(device)
+	return inputsTensor, targetsTensor
 
 def genTextSimple(model, idx, maxNewTokens, contextSize, temp = 0.0, topK = None, eosId = None):
 	generated = idx
@@ -77,7 +130,15 @@ def calcLossLoader(dataLoader, model, device, numBatches = None):
 
 	return totalLoss / numBatches
 
-def trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs, evalFreq, evalIter, printSampleIter, startContext, outputDir, saveCkptFreq, tokenizer, files, totalFiles, batchSize = 1024, trainRatio = 0.90):
+def evaluateModel(model, trainLoader, valLoader, device, evalIter):
+	model.eval()
+	with torch.no_grad():
+		trainLoss = calcLossLoader(trainLoader, model, device, numBatches = evalIter)
+		valLoss = calcLossLoader(valLoader, model, device, numBatches = evalIter)
+	model.train()
+	return trainLoss, valLoss
+
+def trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs, evalFreq, evalIter, printSampleIter, startContext, outputDir, saveCkptFreq, tokenizer, batchSize = 1024, trainRatio = 0.90):
 	trainLosses, valLosses, trackTokensSeen = [], [], []
 	tokensSeen, globalStep = 0, -1
 	startTime = time.time()
@@ -110,7 +171,6 @@ def trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs
 					saveModelAndOptimizer(model, optimizer, fileName)
 					print(f"Saved {fileName}")
 			
-			printEta(startTime, bookStartTime, index, totalFiles)
 
 	except KeyboardInterrupt:
 		fileName = outputDir / f"modelPg{globalStep}.pth"
@@ -173,30 +233,30 @@ if __name__ == "__main__":
 	modelName = "huihui-ai/DeepSeek-R1-Distill-Llama-8B-abliterated"
 	#modelName = "gpt2"
 	fileName = "model.pth"
+	device = "cuda"
 
 	model = AutoModelForCausalLM.from_pretrained(modelName,
 		torch_dtype=torch.float16,	#quantize to 16 bit
 		device_map="auto",	#allow to go on to both cpu and gpu
 		trust_remote_code=True
-		)
-
-	if os.path.exists(fileName):
-		checkpoint = torch.load(fileName)
-		model.load_state_dict(checkpoint["modelStateDict"])
-	
+		)	
 
 	tokenizer = AutoTokenizer.from_pretrained(modelName)
 	optimizer = torch.optim.AdamW(model.parameters(), lr = args.lr, weight_decay = 0.1)
 
 	config = AutoConfig.from_pretrained(modelName)
 
-	customizedCollateFn = partial(customCollate, device = device, textToToken)
+	if tokenizer.pad_token is None:
+		print("orca")
+		tokenizer.add_special_tokens({'pad_token': '<|endoftext|>'})
+
+	customizedCollateFn = partial(customCollate, device = device)
 
 	with open(args.dataFile, "r") as f:
 		data = json.load(f)
 
-	trainPortion = int(len(data) * .85)
-	testPortion = int(len(data))
+	trainPortion = int(len(data) * 0.85)
+	testPortion = int(len(data) * 0.1)
 	valPortion = len(data) - trainPortion - testPortion
 
 	trainData = data[:trainPortion]
@@ -229,22 +289,20 @@ if __name__ == "__main__":
 
 	valLoader = DataLoader(
 		valDataSet,
-		batch_size = batchSize,
+		batch_size = args.batchSize,
 		collate_fn = customizedCollateFn,
 		shuffle = False,
 		drop_last = False,
 		num_workers = numWorkers
 	)
 
-	trainLosses, valLosses, tokensSeen = trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs = args.nEpochs, evalFreq = args.evalFreq, evalIter = 5, startContext = formatInput(val_data[0]), tokenizer=tokenizer)
+	trainLosses, valLosses, tokensSeen = trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs = args.nEpochs, evalFreq = args.evalFreq, evalIter = 5, startContext = formatInput(valData[0]), tokenizer=tokenizer, printSampleIter = args.printSampleIter,outputDir = args.outputDir, saveCkptFreq = args.saveCkptFreq, )
 
 	inputTokens = textToToken("Write a python function to print hello world", tokenizer) 
 
 	response = genTextSimple(model,
 			idx = inputTokens,
-			maxNewTokens = 100,
+			maxNewTokens = 200,
 			contextSize = config.max_position_embeddings)
 
 	print(tokenToText(response, tokenizer))
-
-	torch.save({"modelStateDict": model.state_dict()}, fileName)
