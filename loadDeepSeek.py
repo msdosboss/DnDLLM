@@ -16,7 +16,7 @@ class InstructionDataset(Dataset):
 			instructionAndInput = formatInput(entry)
 			responseText = entry['output']
 			fullText = instructionAndInput + responseText 
-			self.encodedTexts = tokenizer.encode(fullText)
+			self.encodedTexts.append(tokenizer.encode(fullText))
 
 	def __getitem__(self, index):
 		return self.encodedTexts[index]
@@ -59,12 +59,18 @@ def customCollate(batch,
 	return inputsTensor, targetsTensor
 
 def genTextSimple(model, idx, maxNewTokens, contextSize, temp = 0.0, topK = None, eosId = None):
-	generated = idx
+	batchSize, initLen = idx.shape
+	totalLen = initLen + maxNewTokens
+	
 	pastKeyValue = None
+	curPos = initLen
+
+	output = torch.empty((batchSize, totalLen), dtype=idx.dtype, device=idx.device)
+	output[:, :initLen] = idx
 
 	for _ in range(maxNewTokens):
 		#idxCond = idx[:, -contextSize:] old slow version
-		idxCond = generated[:, -1:] if pastKeyValue is not None else generated[:, -contextSize:]
+		idxCond = output[:, curPos - 1:curPos] if pastKeyValue is not None else output[:, curPos - contextSize:curPos]
 		with torch.no_grad():
 			outputs = model(idxCond, use_cache=True, past_key_values = pastKeyValue)
 
@@ -82,12 +88,14 @@ def genTextSimple(model, idx, maxNewTokens, contextSize, temp = 0.0, topK = None
 		else:
 			idxNext = torch.argmax(logits, dim = -1, keepdim = True)
 
-		if idxNext == eosId:
+		if idxNext.item() == eosId:
 			break
-		generated = torch.cat((generated, idxNext), dim = 1)
+
+		#print(idxNext)
+		output[:, curPos] = idxNext.squeeze(1)
+		curPos += 1
 	
-	generated = generated[:, idx.shape[1]:]
-	return generated
+	return output[:, initLen:curPos]
 
 def formatInput(entry):
 	instructionText = f"Below is an instruction that describes a task. Write a response that appropriately completes the request. \n\n### Instruction:\n{entry['instruction']}"
@@ -230,14 +238,15 @@ if __name__ == "__main__":
 				help = 'filePath to loaded model')
 	args = parser.parse_args()
 
-	modelName = "huihui-ai/DeepSeek-R1-Distill-Llama-8B-abliterated"
+	#modelName = "huihui-ai/DeepSeek-R1-Distill-Qwen-7B-abliterated-v2"
 	#modelName = "gpt2"
+	modelName = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
 	fileName = "model.pth"
 	device = "cuda"
 
 	model = AutoModelForCausalLM.from_pretrained(modelName,
 		torch_dtype=torch.float16,	#quantize to 16 bit
-		device_map="auto",	#allow to go on to both cpu and gpu
+		device_map="cuda",	#allow to go on to both cpu and gpu
 		trust_remote_code=True
 		)	
 
@@ -247,10 +256,9 @@ if __name__ == "__main__":
 	config = AutoConfig.from_pretrained(modelName)
 
 	if tokenizer.pad_token is None:
-		print("orca")
 		tokenizer.add_special_tokens({'pad_token': '<|endoftext|>'})
 
-	customizedCollateFn = partial(customCollate, device = device)
+	customizedCollateFn = partial(customCollate, device = device, padTokenId = tokenizer.pad_token_id)
 
 	with open(args.dataFile, "r") as f:
 		data = json.load(f)
@@ -296,13 +304,19 @@ if __name__ == "__main__":
 		num_workers = numWorkers
 	)
 
-	trainLosses, valLosses, tokensSeen = trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs = args.nEpochs, evalFreq = args.evalFreq, evalIter = 5, startContext = formatInput(valData[0]), tokenizer=tokenizer, printSampleIter = args.printSampleIter,outputDir = args.outputDir, saveCkptFreq = args.saveCkptFreq, )
+	trainLosses, valLosses, tokensSeen = trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs = args.nEpochs, evalFreq = args.evalFreq, evalIter = 5, startContext = formatInput(valData[0]), tokenizer=tokenizer, printSampleIter = args.printSampleIter,outputDir = args.outputDir, saveCkptFreq = args.saveCkptFreq)
 
-	inputTokens = textToToken("Write a python function to print hello world", tokenizer) 
+	print(tokenizer.eos_token_id)
+
+	#inputTokens = textToToken("### Instruction: \nWrite a simple C program that prints Hello, World! to the console. Keep it basic and do not include file operations or unnecessary complexity.\n### Response:", tokenizer).to(device) 
+	inputTokens = textToToken("### Instruction: \nWrite a square root function in C <think> </think>?\n### Response:", tokenizer).to(device) 
 
 	response = genTextSimple(model,
 			idx = inputTokens,
-			maxNewTokens = 200,
-			contextSize = config.max_position_embeddings)
+			maxNewTokens = 1000,
+			contextSize = config.max_position_embeddings,
+			eosId = tokenizer.eos_token_id,
+			temp = .95,
+			topK = 50)
 
 	print(tokenToText(response, tokenizer))
