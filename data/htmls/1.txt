@@ -10,6 +10,55 @@ Supernatural abilities are magical but not spell-like . Supernatural abilities a
 
 Table: Special Ability Types:
 Effect | Extraordinary Ability | Spell-Like Ability | Supernatural Ability
+|||
+Subscribe to the Open Gaming Network and get everything ad-free!
+Contents
+The following special abilities include rules commonly used by a number of creatures, spells, and traps.
+Extraordinary abilities are non-magical. They are, however, not something that just anyone can do or even learn to do without extensive training. Effects or areas that suppress or negate magic have no effect on extraordinary abilities.
+Spell-like abilities, as the name implies, are magical abilities that are very much like spells. Spell-like abilities are subject to spell resistance and dispel magic . They do not function in areas where magic is suppressed or negated (such as an antimagic field ). Spell-like abilities can be dispelled but they cannot be counterspelled or used to counterspell .
+Supernatural abilities are magical but not spell-like . Supernatural abilities are not subject to spell resistance and do not function in areas where magic is suppressed or negated (such as an antimagic field ). A supernatural ability’s effect cannot be dispelled and is not subject to counterspells. See Table: Special Ability Types for a summary of the types of special abilities.
+
+Table: Special Ability Types:
+Effect | Extraordinary Ability | Spell-Like Ability | Supernatural Ability
+Can dispel magic and similar spells dispel the effects of abilities of that type? | No | Yes | No
+|||
+Subscribe to the Open Gaming Network and get everything ad-free!
+Contents
+The following special abilities include rules commonly used by a number of creatures, spells, and traps.
+Extraordinary abilities are non-magical. They are, however, not something that just anyone can do or even learn to do without extensive training. Effects or areas that suppress or negate magic have no effect on extraordinary abilities.
+Spell-like abilities, as the name implies, are magical abilities that are very much like spells. Spell-like abilities are subject to spell resistance and dispel magic . They do not function in areas where magic is suppressed or negated (such as an antimagic field ). Spell-like abilities can be dispelled but they cannot be counterspelled or used to counterspell .
+Supernatural abilities are magical but not spell-like . Supernatural abilities are not subject to spell resistance and do not function in areas where magic is suppressed or negated (such as an antimagic field ). A supernatural ability’s effect cannot be dispelled and is not subject to counterspells. See Table: Special Ability Types for a summary of the types of special abilities.
+
+Table: Special Ability Types:
+Effect | Extraordinary Ability | Spell-Like Ability | Supernatural Ability
+Can dispel magic and similar spells dispel the effects of abilities of that type? | No | Yes | No
+Does spell resistance protect a creature from these abilities? | No | Yes | No
+|||
+Subscribe to the Open Gaming Network and get everything ad-free!
+Contents
+The following special abilities include rules commonly used by a number of creatures, spells, and traps.
+Extraordinary abilities are non-magical. They are, however, not something that just anyone can do or even learn to do without extensive training. Effects or areas that suppress or negate magic have no effect on extraordinary abilities.
+Spell-like abilities, as the name implies, are magical abilities that are very much like spells. Spell-like abilities are subject to spell resistance and dispel magic . They do not function in areas where magic is suppressed or negated (such as an antimagic field ). Spell-like abilities can be dispelled but they cannot be counterspelled or used to counterspell .
+Supernatural abilities are magical but not spell-like . Supernatural abilities are not subject to spell resistance and do not function in areas where magic is suppressed or negated (such as an antimagic field ). A supernatural ability’s effect cannot be dispelled and is not subject to counterspells. See Table: Special Ability Types for a summary of the types of special abilities.
+
+Table: Special Ability Types:
+Effect | Extraordinary Ability | Spell-Like Ability | Supernatural Ability
+Can dispel magic and similar spells dispel the effects of abilities of that type? | No | Yes | No
+Does spell resistance protect a creature from these abilities? | No | Yes | No
+Does an antimagic field or similar magic suppress the ability? | No | Yes | Yes
+|||
+Subscribe to the Open Gaming Network and get everything ad-free!
+Contents
+The following special abilities include rules commonly used by a number of creatures, spells, and traps.
+Extraordinary abilities are non-magical. They are, however, not something that just anyone can do or even learn to do without extensive training. Effects or areas that suppress or negate magic have no effect on extraordinary abilities.
+Spell-like abilities, as the name implies, are magical abilities that are very much like spells. Spell-like abilities are subject to spell resistance and dispel magic . They do not function in areas where magic is suppressed or negated (such as an antimagic field ). Spell-like abilities can be dispelled but they cannot be counterspelled or used to counterspell .
+Supernatural abilities are magical but not spell-like . Supernatural abilities are not subject to spell resistance and do not function in areas where magic is suppressed or negated (such as an antimagic field ). A supernatural ability’s effect cannot be dispelled and is not subject to counterspells. See Table: Special Ability Types for a summary of the types of special abilities.
+
+Table: Special Ability Types:
+Effect | Extraordinary Ability | Spell-Like Ability | Supernatural Ability
+Can dispel magic and similar spells dispel the effects of abilities of that type? | No | Yes | No
+Does spell resistance protect a creature from these abilities? | No | Yes | No
+Does an antimagic field or similar magic suppress the ability? | No | Yes | Yes
 Does using the ability provoke attacks of opportunity the way that casting a spell does? | No | Yes | No
 |||
 Subscribe to the Open Gaming Network and get everything ad-free!
@@ -21,6 +70,9 @@ Supernatural abilities are magical but not spell-like . Supernatural abilities a
 
 Table: Special Ability Types:
 Effect | Extraordinary Ability | Spell-Like Ability | Supernatural Ability
+Can dispel magic and similar spells dispel the effects of abilities of that type? | No | Yes | No
+Does spell resistance protect a creature from these abilities? | No | Yes | No
+Does an antimagic field or similar magic suppress the ability? | No | Yes | Yes
 Does using the ability provoke attacks of opportunity the way that casting a spell does? | No | Yes | No
 |||
 Blindsight
@@ -33,7 +85,7 @@ Channel Resistance
 Creatures with channel resistance gain a bonus on Will saves made against channeled energy. They add their bonus to any Will saves made to halve the damage and resist the effect.
 |||
 Charm and Compulsion
-Many abilities and spells can cloud the minds of characters and monsters, leaving them unable to tell friend from foeâor worse yet, deceiving them into thinking that their former friends are now their worst enemies. Two general types of enchantments affect characters and creatures: charms and compulsions.
+Many abilities and spells can cloud the minds of characters and monsters, leaving them unable to tell friend from foe—or worse yet, deceiving them into thinking that their former friends are now their worst enemies. Two general types of enchantments affect characters and creatures: charms and compulsions.
 Charming another creature gives the charming character the ability to befriend and suggest courses of action to his minion, but the servitude is not absolute or mindless. Charms of this type include the various charm spells and some monster abilities. Essentially, a charmed character retains free will but makes choices according to a skewed view of the world.
 Compulsion is a different matter altogether. A compulsion overrides the subject’s free will in some way or simply changes the way the subject’s mind works. A charm makes the subject a friend of the caster; a compulsion makes the subject obey the caster.
 Regardless of whether a character is charmed or compelled, he does not volunteer information or tactics that his master doesn’t ask for.
@@ -57,12 +109,34 @@ Overcoming DR
 
 Table:
 DR Type | Weapon Enhancement Bonus Equivalent
+|||
+Overcoming DR
+
+Table:
+DR Type | Weapon Enhancement Bonus Equivalent
+Cold iron / silver | +3
+|||
+Overcoming DR
+
+Table:
+DR Type | Weapon Enhancement Bonus Equivalent
+Cold iron / silver | +3
+Adamantine * | +4
+|||
+Overcoming DR
+
+Table:
+DR Type | Weapon Enhancement Bonus Equivalent
+Cold iron / silver | +3
+Adamantine * | +4
 Alignment-based | +5
 |||
 Overcoming DR
 
 Table:
 DR Type | Weapon Enhancement Bonus Equivalent
+Cold iron / silver | +3
+Adamantine * | +4
 Alignment-based | +5
 * Note that this does not give the ability to ignore hardness , like an actual adamantine weapon does.
 Damage Reduction may be overcome by special materials, magic weapons (any weapon with a +1 or higher enhancement bonus , not counting the enhancement from masterwork quality), certain types of weapons (such as slashing or bludgeoning), and weapons imbued with an alignment .
@@ -70,14 +144,14 @@ Ammunition fired from a projectile weapon with an enhancement bonus of +1 or hig
 Weapons with an enhancement bonus of +3 or greater can ignore some types of damage reduction, regardless of their actual material or alignment . The following table shows what type of enhancement bonus is needed to overcome some common types of damage reduction.
 |||
 Darkvision
-Darkvision is the extraordinary ability to see with no light source at all, out to a range specified for the creature. Darkvision is black-and-white only (colors cannot be discerned). It does not allow characters to see anything that they could not see otherwiseâ invisible objects are still invisible, and illusions are still visible as what they seem to be. Likewise, darkvision subjects a creature to gaze attacks normally. The presence of light does not spoil darkvision.
+Darkvision is the extraordinary ability to see with no light source at all, out to a range specified for the creature. Darkvision is black-and-white only (colors cannot be discerned). It does not allow characters to see anything that they could not see otherwise— invisible objects are still invisible, and illusions are still visible as what they seem to be. Likewise, darkvision subjects a creature to gaze attacks normally. The presence of light does not spoil darkvision.
 |||
 Death Attacks
 In most cases, a death attack allows the victim a Fortitude save to avoid the effect, but if the save fails, the character dies instantly.
 |||
 Energy Drain and Negative Levels
-Some spells and a number of undead creatures have the ability to drain away life and energy; this dreadful attack results in ânegative levels.â These cause a character to take a number of penalties.
-For each negative level a creature has, it takes a cumulative â1 penalty on all ability checks, attack rolls , combat maneuver checks, Combat Maneuver Defense , saving throws, and skill checks. In addition, the creature reduces its current and total hit points by 5 for each negative level it possesses. The creature is also treated as one level lower for the purpose of level-dependent variables (such as spellcasting) for each negative level possessed. Spellcasters do not lose any prepared spells or slots as a result of negative levels. If a creature’s negative levels equal or exceed its total Hit Dice , it dies.
+Some spells and a number of undead creatures have the ability to drain away life and energy; this dreadful attack results in “negative levels.” These cause a character to take a number of penalties.
+For each negative level a creature has, it takes a cumulative –1 penalty on all ability checks, attack rolls , combat maneuver checks, Combat Maneuver Defense , saving throws, and skill checks. In addition, the creature reduces its current and total hit points by 5 for each negative level it possesses. The creature is also treated as one level lower for the purpose of level-dependent variables (such as spellcasting) for each negative level possessed. Spellcasters do not lose any prepared spells or slots as a result of negative levels. If a creature’s negative levels equal or exceed its total Hit Dice , it dies.
 A creature with temporary negative levels receives a new saving throw to remove the negative level each day. The DC of this save is the same as the effect that caused the negative levels.
 Some abilities and spells (such as raise dead ) bestow permanent level drain on a creature. These are treated just like temporary negative levels, but they do not allow a new save each day to remove them. Level drain can be removed through spells like restoration . Permanent negative levels remain after a dead creature is restored to life. A creature whose permanent negative levels equal its Hit Dice cannot be brought back to life through spells like raise dead and resurrection without also receiving a restoration spell, cast the round after it is restored to life.
 |||
@@ -96,14 +170,14 @@ An ethereal creature treats other ethereal creatures and ethereal objects as if 
 |||
 Fear (Su or Sp)
 Spells, magic items, and certain monsters can affect characters with fear. In most cases, the character makes a Will saving throw to resist this effect, and a failed roll means that the character is shaken , frightened , or panicked .
-Shaken : Characters who are shaken take a â2 penalty on attack rolls , saving throws , skill checks , and ability checks.
+Shaken : Characters who are shaken take a –2 penalty on attack rolls , saving throws , skill checks , and ability checks.
 Frightened : Characters who are frightened are shaken , and in addition they flee from the source of their fear as quickly as they can. They can choose the paths of their flight. Other than that stipulation, once they are out of sight (or hearing) of the source of their fear, they can act as they want. If the duration of their fear continues, however, characters can be forced to flee if the source of their fear presents itself again. Characters unable to flee can fight (though they are still shaken ).
 Panicked : Characters who are panicked are shaken , and they run away from the source of their fear as quickly as they can, dropping whatever they are holding. Other than running away from the source, their paths are random. They flee from all other dangers that confront them rather than facing those dangers. Once they are out of sight (or hearing) of any source of danger, they can act as they want. Panicked characters cower if they are prevented from fleeing.
 Becoming Even More Fearful : Fear effects are cumulative. A shaken character who is made shaken again becomes frightened , and a shaken character who is made frightened becomes panicked instead. A frightened character who is made shaken or frightened becomes panicked instead.
 Fear attacks can have various effects.
-Fear Aura (Su) The use of this ability is a free action. The aura can freeze an opponent (as in the case of a mummyâs despair) or function like the fear spell. Other effects are possible. A fear aura is an area effect. The descriptive text gives the size and kind of the area.
+Fear Aura (Su) The use of this ability is a free action. The aura can freeze an opponent (as in the case of a mummy’s despair) or function like the fear spell. Other effects are possible. A fear aura is an area effect. The descriptive text gives the size and kind of the area.
 Fear Cone (Sp) and Ray (Su) These effects usually work like the fear spell.
-If a fear effect allows a saving throw, it is a Will save (DC = 10 + 1/2 the fearsome creatureâs racial HD + that creatureâs Charisma modifier; the exact DC is given in the creatureâs descriptive text). All fear attacks are mind-affecting fear effects.
+If a fear effect allows a saving throw, it is a Will save (DC = 10 + 1/2 the fearsome creature’s racial HD + that creature’s Charisma modifier; the exact DC is given in the creature’s descriptive text). All fear attacks are mind-affecting fear effects.
 Format : fear aura (30 ft., DC 17); Location: Aura.
 Format : fear cone (50 ft., DC 19); Location: Special Attacks.
 |||
@@ -111,20 +185,153 @@ Invisibility
 The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
 Invisibility makes a creature undetectable by vision, including darkvision .
 Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
-A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that âsomething’s thereâ but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
 
 Table:
 Invisible creature is… | Perception DC Modifier
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+Moving at full speed | –10
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+Moving at full speed | –10
+Running or charging | –20
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+Moving at full speed | –10
+Running or charging | –20
+Not moving | +20
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+Moving at full speed | –10
+Running or charging | –20
+Not moving | +20
+Using Stealth | Stealth check +20
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+Moving at full speed | –10
+Running or charging | –20
+Not moving | +20
+Using Stealth | Stealth check +20
+Some distance away | +1 per 10 feet
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+Moving at full speed | –10
+Running or charging | –20
+Not moving | +20
+Using Stealth | Stealth check +20
+Some distance away | +1 per 10 feet
+Behind an obstacle (door) | +5
+|||
+Invisibility
+The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
+Invisibility makes a creature undetectable by vision, including darkvision .
+Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+
+Table:
+Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+Moving at full speed | –10
+Running or charging | –20
+Not moving | +20
+Using Stealth | Stealth check +20
+Some distance away | +1 per 10 feet
+Behind an obstacle (door) | +5
 Behind an obstacle (stone wall) | +15
 |||
 Invisibility
 The ability to move about unseen is not foolproof. While they can’t be seen, invisible creatures can be heard, smelled, or felt.
 Invisibility makes a creature undetectable by vision, including darkvision .
 Invisibility does not, by itself, make a creature immune to critical hits, but it does make the creature immune to extra damage from being a ranger’s favored enemy and from sneak attacks .
-A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that âsomething’s thereâ but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
+A creature can generally notice the presence of an active invisible creature within 30 feet with a DC 20 Perception check. The observer gains a hunch that “something’s there” but can’t see it or target it accurately with an attack. It’s practically impossible (+20 DC) to pinpoint an invisible creature’s location with a Perception check. Even once a character has pinpointed the square that contains an invisible creature, the creature still benefits from total concealment (50% miss chance). There are a number of modifiers that can be applied to this DC if the invisible creature is moving or engaged in a noisy activity.
 
 Table:
 Invisible creature is… | Perception DC Modifier
+In combat or speaking | –20
+Moving at half speed | –5
+Moving at full speed | –10
+Running or charging | –20
+Not moving | +20
+Using Stealth | Stealth check +20
+Some distance away | +1 per 10 feet
+Behind an obstacle (door) | +5
 Behind an obstacle (stone wall) | +15
 A creature can grope about to find an invisible creature. A character can make a touch attack with his hands or a weapon into two adjacent 5-foot squares using a standard action . If an invisible target is in the designated area, there is a 50% miss chance on the touch attack . If successful, the groping character deals no damage but has successfully pinpointed the invisible creature’s current location. If the invisible creature moves, its location, obviously, is once again unknown.
 If an invisible creature strikes a character, the character struck knows the location of the creature that struck him (until, of course, the invisible creature moves). The only exception is if the invisible creature has a reach greater than 5 feet. In this case, the struck character knows the general location of the creature but has not pinpointed the exact location.
@@ -195,4 +402,4 @@ Latest Pathfinder products in the Open Gaming Store
 Patreon Supporters
 
 Table:
-Become an Editor! | Support Open Gaming | Subscribe toÂ Our Newsletter | Sell in the Open Gaming Store | Report a Bug or Issue
+Become an Editor! | Support Open Gaming | Subscribe to Our Newsletter | Sell in the Open Gaming Store | Report a Bug or Issue
