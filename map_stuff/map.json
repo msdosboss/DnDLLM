@@ -1,0 +1,633 @@
+{
+  "width": 11,
+  "height": 11,
+  "grid": [
+    [
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "wood",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      }
+    ],
+    [
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "hidden spike trap",
+        "height": 1
+      },
+      {
+        "terrain": "stone",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      }
+    ],
+    [
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "hidden spike trap",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 2
+      }
+    ],
+    [
+      {
+        "terrain": "stone",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "stone",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "stone",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "stone",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      }
+    ],
+    [
+      {
+        "terrain": "stone",
+        "trap": "spike trap",
+        "height": 3
+      },
+      {
+        "terrain": "water",
+        "trap": "hidden spike trap",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "stone",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "stone",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "hidden spike trap",
+        "height": 0
+      },
+      {
+        "terrain": "grass",
+        "trap": "hidden spike trap",
+        "height": 1
+      },
+      {
+        "terrain": "wood",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      }
+    ],
+    [
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 2
+      },
+      {
+        "terrain": "water",
+        "trap": "spike trap",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "hidden spike trap",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      }
+    ],
+    [
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "wood",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 1
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      }
+    ],
+    [
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "spike trap",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "spike trap",
+        "height": 0
+      },
+      {
+        "terrain": "grass",
+        "trap": "hidden spike trap",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      }
+    ],
+    [
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      }
+    ],
+    [
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "hidden spike trap",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "hidden spike trap",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "water",
+        "trap": "none",
+        "height": 0
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      }
+    ],
+    [
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 4
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "stone",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 2
+      },
+      {
+        "terrain": "wood",
+        "trap": "none",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "spike trap",
+        "height": 3
+      },
+      {
+        "terrain": "grass",
+        "trap": "none",
+        "height": 3
+      }
+    ]
+  ]
+}
