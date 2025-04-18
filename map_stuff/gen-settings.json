@@ -1,0 +1,22 @@
+{
+    "height": {
+        "seed_height_min": 3,
+        "seed_height_max": 6,
+        "normalization_max": 4
+    },
+    "terrains": {
+        "water": {
+            "attempts": 2,
+            "spread_chance": 0.4
+        },
+        "stone": {
+            "attempts": 5,
+            "spread_chance": 0.3
+        },
+        "wood": {
+            "attempts": 10,
+            "spread_chance": 0.2,
+            "min_distance": 2
+        }
+    }
+}

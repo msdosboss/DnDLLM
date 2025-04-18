@@ -1,6 +1,8 @@
 accelerate==1.6.0
+beautifulsoup4==4.13.4
 certifi==2025.1.31
 charset-normalizer==3.4.1
+faiss-cpu==1.10.0
 filelock==3.18.0
 fsspec==2025.3.2
 huggingface-hub==0.30.2
@@ -24,12 +26,13 @@ nvidia-nccl-cu12==2.21.5
 nvidia-nvjitlink-cu12==12.4.127
 nvidia-nvtx-cu12==12.4.127
 packaging==24.2
+pillow==11.2.1
 psutil==7.0.0
 PyYAML==6.0.2
 regex==2024.11.6
 requests==2.32.3
 safetensors==0.5.3
-setuptools==78.1.0
+soupsieve==2.6
 sympy==1.13.1
 tokenizers==0.21.1
 torch==2.6.0
