@@ -65,8 +65,8 @@ def extract_text_sections_with_tables(delimiter='|||'):
                         row_text = ' | '.join(cell.get_text(" ", strip=True) for cell in cells)
                         current_section += row_text + "\n"
 
-                    if current_section:
-                        sections.append(current_section.strip())
+        if current_section:
+            sections.append(current_section.strip())
 
             final_text = f"\n{delimiter}\n".join(sections)
 
