@@ -5,6 +5,9 @@ from functools import partial
 from torch.utils.data import Dataset, DataLoader
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import AutoConfig
+from rag import loadRagModelAndTokenizer
+from rag import ragIntoPrompt
+from rag import loadDatabaseAndText
 
 
 class InstructionDataset(Dataset):
@@ -119,6 +122,18 @@ def formatInput(entry):
     )
 
     return instructionText + inputText
+
+
+def formatUserPrompt(prompt):
+    device = "cuda"
+    model, tokenizer = loadRagModelAndTokenizer()
+    index, chunks = loadDatabaseAndText("RAGDatabase/index.faiss", "RAGDatabase/text.pkl")
+
+    ragPrompt = ragIntoPrompt(prompt, model, tokenizer, index, chunks, device)
+
+    print(ragPrompt)
+
+    return f"Below is a question about the way a DnD Pathfinder situation will be resolved and after that you are given info about the question via a RAG lookup \n\n### Instruction:\n{ragPrompt}"
 
 
 def evaluateModel(model, trainLoader, valLoader, device, evalIter):
@@ -316,17 +331,23 @@ if __name__ == "__main__":
 
     trainLosses, valLosses, tokensSeen = trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs=args.nEpochs, evalFreq=args.evalFreq, evalIter=5, startContext=formatInput(valData[0]), tokenizer=tokenizer, printSampleIter=args.printSampleIter, outputDir=args.outputDir, saveCkptFreq=args.saveCkptFreq)
 
-    print(tokenizer.eos_token_id)
+    userPrompt = input("Input your prompt:\n")
 
-    # inputTokens = textToToken("### Instruction: \nWrite a simple C program that prints Hello, World! to the console. Keep it basic and do not include file operations or unnecessary complexity.\n### Response:", tokenizer).to(device)
-    inputTokens = textToToken("### Instruction: \nWrite a square root function in C <think> </think>?\n### Response:", tokenizer).to(device)
+    while userPrompt != "!quit":
+        # inputTokens = textToToken("### Instruction: \nWrite a simple C program that prints Hello, World! to the console. Keep it basic and do not include file operations or unnecessary complexity.\n### Response:", tokenizer).to(device)
+        model.to("cpu")
+        userPrompt = formatUserPrompt(userPrompt)
+        model.to(device)
+        inputTokens = textToToken(userPrompt, tokenizer).to(device)
 
-    response = genTextSimple(model,
-                             idx=inputTokens,
-                             maxNewTokens=1000,
-                             contextSize=config.max_position_embeddings,
-                             eosId=tokenizer.eos_token_id,
-                             temp=.95,
-                             topK=50)
+        response = genTextSimple(model,
+                                 idx=inputTokens,
+                                 maxNewTokens=2000,
+                                 contextSize=config.max_position_embeddings,
+                                 eosId=tokenizer.eos_token_id,
+                                 temp=.95,
+                                 topK=50)
 
-    print(tokenToText(response, tokenizer))
+        print(tokenToText(response, tokenizer) + "\n")
+
+        userPrompt = input("Input your prompt:\n")

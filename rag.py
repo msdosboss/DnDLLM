@@ -33,7 +33,7 @@ def parseTextFiles(dir="data/htmls/"):
     return flatChunks
 
 
-def embedChunck(text, model, tokenizer):
+def embedChunck(text, model, tokenizer, device):
     inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True).to(device)
 
     with torch.no_grad():
@@ -92,6 +92,33 @@ def normalizeChunks(chunks, sizeThreshold=512):
     return normalizedChunks
 
 
+def queryDatabase(query, model, tokenizer, index, chunks, k, device):
+    queryEmbedding = embedChunck(query, model, tokenizer, device)
+
+    distances, indices = index.search(queryEmbedding.numpy(), k)
+
+    topChunks = [chunks[i] for i in indices[0]]
+    return topChunks
+
+
+def ragIntoPrompt(prompt, model, tokenizer, index, chunks, device, topK=50, sizeThreshold=512):
+    topChunks = queryDatabase(prompt, model, tokenizer, index, chunks, topK, device)
+    i = 0
+    ragEntries = ""
+    while len(ragEntries) < sizeThreshold:
+        ragEntries += " " + topChunks[i]
+        i += 1
+
+    return prompt + " " + ragEntries
+
+
+def loadRagModelAndTokenizer(encoderName="infly/inf-retriever-v1-1.5b", device="cuda"):
+    tokenizer = AutoTokenizer.from_pretrained(encoderName)
+    model = AutoModel.from_pretrained(encoderName).to(device)
+
+    return model, tokenizer
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='RAG Configurations')
 
@@ -101,10 +128,7 @@ if __name__ == "__main__":
 
     device = "cuda"
 
-    encoderName = "infly/inf-retriever-v1-1.5b"
-    # encoderName = "facebook/dpr-ctx_encoder-single-nq-base"
-    tokenizer = AutoTokenizer.from_pretrained(encoderName)
-    model = AutoModel.from_pretrained(encoderName).to(device)
+    model, tokenizer = loadRagModelAndTokenizer()
 
     if args.create is True:
         chunks = parseTextFiles()
@@ -113,11 +137,5 @@ if __name__ == "__main__":
     else:
         index, chunks = loadDatabaseAndText("RAGDatabase/index.faiss", "RAGDatabase/text.pkl")
 
-    queryEmbedding = embedChunck("rules for grappling in Pathfinder? actions lost", model, tokenizer)
-
-    k = 5
-    distances, indices = index.search(queryEmbedding.numpy(), k)
-
-    topChunks = [chunks[i] for i in indices[0]]
-
+    topChunks = queryDatabase("Size table. What does size affect. size. How does size affect AC for example", model, tokenizer, index, chunks, 5, device)
     print(topChunks)
