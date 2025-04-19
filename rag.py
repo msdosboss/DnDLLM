@@ -38,7 +38,8 @@ def embedChunck(text, model, tokenizer):
 
     with torch.no_grad():
         lastHidden = model(**inputs).last_hidden_state
-        embedding = lastHidden[:, 0, :]  # extracting [CLS] token aka a context embedding for the whole sentence
+        embedding = lastHidden.mean(dim=1)
+        # embedding = lastHidden[:, 0, :]  # extracting [CLS] token aka a context embedding for the whole sentence
         # embedding = model(**inputs).pooler_output	#the DPR output class does not contain a cls token instead we can just use the pooling of the output tokens to create a sentence token
 
     return embedding.cpu()  # have to return to the cpu because my FAISS index lib is only cpu right now
@@ -75,7 +76,7 @@ def loadDatabaseAndText(indexName, pickleFileName):
     return index, chunks
 
 
-def normalizeChunks(chunks, sizeThreshold=256):
+def normalizeChunks(chunks, sizeThreshold=512):
     normalizedChunks = []
     currentChunk = ""
     for chunk in chunks:
@@ -107,12 +108,12 @@ if __name__ == "__main__":
 
     if args.create is True:
         chunks = parseTextFiles()
-        chunks = normalizeChunks(chunks)
+        # chunks = normalizeChunks(chunks)
         index = createAndSaveDatabase(model, tokenizer, chunks)
     else:
         index, chunks = loadDatabaseAndText("RAGDatabase/index.faiss", "RAGDatabase/text.pkl")
 
-    queryEmbedding = embedChunck("Bonuses that are gained for being at different sizes in Pathfinder? size table", model, tokenizer)
+    queryEmbedding = embedChunck("rules for grappling in Pathfinder? actions lost", model, tokenizer)
 
     k = 5
     distances, indices = index.search(queryEmbedding.numpy(), k)
