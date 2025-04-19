@@ -9,7 +9,7 @@ TERRAINS = ["grass", "stone", "water", "wood"]
 TRAPS = ["none", "spike trap", "hidden spike trap"]
 
 def make_empty_map(width, height):
-    return [[{"terrain": "grass", "trap": "none", "height": 0} for _ in range(width)] for _ in range(height)]
+    return [[{"terrain": "grass", "trap": "none", "height": 0, "creatures": "none"} for _ in range(width)] for _ in range(height)]
 
 def spread_terrain(map_data, terrain, attempts, spread_chance=0.6, min_distance=0):
     height = len(map_data)
@@ -190,7 +190,7 @@ def display_map_ASCII(map_data, layer="terrain"):
                 line += f"{value:2d} "
         print(line)
 
-def display_map(map_data, show_height=True, show_traps=True, output_file="map.png"):
+def display_map(map_data, show_height=True, show_traps=True, show_creatures=True, output_file="map.png"):
     grid = map_data["grid"]
     tile_size = 32
     width = len(grid[0])
@@ -232,6 +232,34 @@ def display_map(map_data, show_height=True, show_traps=True, output_file="map.pn
                 h = tile.get("height")
                 if h is not None:
                     draw.text((bottom_right[0] - 12, bottom_right[1] - 12), str(h), fill="black", font=font)
+
+            # Creature indicator (center)
+            if show_creatures:
+                creature = tile.get("creatures")
+                if creature and creature.lower() != "none":
+                    # Center of the tile
+                    print(f"Creating creature {creature}")
+                    center_x = top_left[0] + tile_size // 2
+                    center_y = top_left[1] + tile_size // 2
+                    radius = tile_size // 3
+                    bbox = [
+                        (center_x - radius, center_y - radius),
+                        (center_x + radius, center_y + radius)
+                    ]
+                    draw.ellipse(bbox, fill="yellow", outline="black")
+
+                    # First letter of the creature's name
+                    initial = creature[0].upper()
+                    bbox = draw.textbbox((0, 0), initial, font=font)
+                    text_width = bbox[2] - bbox[0]
+                    text_height = bbox[3] - bbox[1]
+                    text_pos = (
+                        center_x - text_width // 2,
+                        center_y - text_height // 2
+                    )
+
+                    draw.text(text_pos, initial, fill="black", font=font)
+
 
     img.save(output_file)
     print(f"Map saved to {output_file}")
