@@ -45,8 +45,8 @@ def embedChunck(text, model, tokenizer, device):
     return embedding.cpu()  # have to return to the cpu because my FAISS index lib is only cpu right now
 
 
-def createAndSaveDatabase(model, tokenizer, chunks):
-    embeddings = torch.cat([embedChunck(chunk, model, tokenizer) for chunk in chunks])
+def createAndSaveDatabase(model, tokenizer, chunks, device):
+    embeddings = torch.cat([embedChunck(chunk, model, tokenizer, device) for chunk in chunks])
     index = createDatabase(embeddings)
     saveDatabase(index, chunks)
 
@@ -101,15 +101,15 @@ def queryDatabase(query, model, tokenizer, index, chunks, k, device):
     return topChunks
 
 
-def ragIntoPrompt(prompt, model, tokenizer, index, chunks, device, topK=50, sizeThreshold=512):
+def ragIntoPrompt(prompt, model, tokenizer, index, chunks, device, topK=50, sizeThreshold=1024):
     topChunks = queryDatabase(prompt, model, tokenizer, index, chunks, topK, device)
     i = 0
     ragEntries = ""
-    while len(ragEntries) < sizeThreshold:
+    while len(ragEntries.split()) < sizeThreshold:
         ragEntries += " " + topChunks[i]
         i += 1
 
-    return prompt + " " + ragEntries
+    return "Question:\n" + prompt + "\nRAG information:\n" + ragEntries
 
 
 def loadRagModelAndTokenizer(encoderName="infly/inf-retriever-v1-1.5b", device="cuda"):
@@ -133,9 +133,9 @@ if __name__ == "__main__":
     if args.create is True:
         chunks = parseTextFiles()
         # chunks = normalizeChunks(chunks)
-        index = createAndSaveDatabase(model, tokenizer, chunks)
+        index = createAndSaveDatabase(model, tokenizer, chunks, device)
     else:
         index, chunks = loadDatabaseAndText("RAGDatabase/index.faiss", "RAGDatabase/text.pkl")
 
-    topChunks = queryDatabase("Size table. What does size affect. size. How does size affect AC for example", model, tokenizer, index, chunks, 5, device)
+    topChunks = queryDatabase("How do my", model, tokenizer, index, chunks, 5, device)
     print(topChunks)

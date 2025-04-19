@@ -131,9 +131,11 @@ def formatUserPrompt(prompt):
 
     ragPrompt = ragIntoPrompt(prompt, model, tokenizer, index, chunks, device)
 
+    ragPrompt = f"### Instruction:\nBelow is a question about the way a DnD Pathfinder situation will be resolved and after that you are given info about the question via a RAG lookup\n\n{ragPrompt} \n Response:\n"
+
     print(ragPrompt)
 
-    return f"Below is a question about the way a DnD Pathfinder situation will be resolved and after that you are given info about the question via a RAG lookup \n\n### Instruction:\n{ragPrompt}"
+    return ragPrompt
 
 
 def evaluateModel(model, trainLoader, valLoader, device, evalIter):
@@ -348,6 +350,6 @@ if __name__ == "__main__":
                                  temp=.95,
                                  topK=50)
 
-        print(tokenToText(response, tokenizer) + "\n")
+        print("\n" + tokenToText(response, tokenizer) + "\n")
 
         userPrompt = input("Input your prompt:\n")
