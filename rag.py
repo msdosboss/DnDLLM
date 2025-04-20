@@ -33,12 +33,24 @@ def parseTextFiles(dir="data/htmls/"):
     return flatChunks
 
 
+def lastTokenPool(last_hidden_states, attention_mask):  # This function is from https://huggingface.co/infly/inf-retriever-v1-1.5b
+    left_padding = (attention_mask[:, -1].sum() == attention_mask.shape[0])
+    if left_padding:
+        return last_hidden_states[:, -1]
+    else:
+        sequence_lengths = attention_mask.sum(dim=1) - 1
+        batch_size = last_hidden_states.shape[0]
+        return last_hidden_states[torch.arange(batch_size, device=last_hidden_states.device), sequence_lengths]
+
+
+
 def embedChunck(text, model, tokenizer, device):
     inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True).to(device)
 
     with torch.no_grad():
         lastHidden = model(**inputs).last_hidden_state
-        embedding = lastHidden.mean(dim=1)
+        embedding = lastTokenPool(lastHidden, inputs['attention_mask'])
+        embedding = torch.nn.functional.normalize(embedding, p=2, dim=1)
         # embedding = lastHidden[:, 0, :]  # extracting [CLS] token aka a context embedding for the whole sentence
         # embedding = model(**inputs).pooler_output	#the DPR output class does not contain a cls token instead we can just use the pooling of the output tokens to create a sentence token
 
@@ -137,5 +149,13 @@ if __name__ == "__main__":
     else:
         index, chunks = loadDatabaseAndText("RAGDatabase/index.faiss", "RAGDatabase/text.pkl")
 
-    topChunks = queryDatabase("How do my", model, tokenizer, index, chunks, 5, device)
+    size_modifier_text = "Large creatures take an –1 penalty to AC due to their size. See: Size Modifiers table."
+
+    print("chunk embedding:")
+    print(embedChunck(size_modifier_text, model, tokenizer, device))
+
+    print("prompt embedding:")
+    print(embedChunck("Creatures that are large have what happen to AC?", model, tokenizer, device))
+
+    topChunks = queryDatabase("Describe to me how touch attacks work", model, tokenizer, index, chunks, 25, device)
     print(topChunks)
