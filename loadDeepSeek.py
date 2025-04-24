@@ -3,7 +3,8 @@ import json
 import argparse
 from functools import partial
 from torch.utils.data import Dataset, DataLoader
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from llama_cpp import Llama
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from transformers import AutoConfig
 from rag import loadRagModelAndTokenizer
 from rag import ragIntoPrompt
@@ -125,8 +126,9 @@ def formatInput(entry):
 
 
 def formatUserPrompt(prompt):
-    device = "cuda"
-    model, tokenizer = loadRagModelAndTokenizer()
+    # device = "cuda"
+    device = "cpu"
+    model, tokenizer = loadRagModelAndTokenizer(device=device)
     index, chunks = loadDatabaseAndText("RAGDatabase/index.faiss", "RAGDatabase/text.pkl")
 
     ragPrompt = ragIntoPrompt(prompt, model, tokenizer, index, chunks, device)
@@ -214,14 +216,16 @@ def trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs
 
 
 def textToToken(text, tokenizer):
-    encoded = tokenizer.encode(text)
+    # encoded = tokenizer.encode(text)  # Hugging face version
+    encoded = tokenizer.tokenize(text.encode("utf-8"), add_bos=False)  # Llamma.cpp version
     encodedTensor = torch.tensor(encoded).unsqueeze(0)  # add the batch dim
     return encodedTensor
 
 
 def tokenToText(tokens, tokenizer):
     flat = tokens.squeeze(0)
-    return tokenizer.decode(flat.tolist())
+    return tokenizer.detokenize(flat.tolist())  # Llamma.cpp version
+    # return tokenizer.decode(flat.tolist())  # Hugging face version
 
 
 def saveModelAndOptimizer(model, optimizer, fileName):
@@ -268,17 +272,35 @@ if __name__ == "__main__":
 
     # modelName = "huihui-ai/DeepSeek-R1-Distill-Qwen-7B-abliterated-v2"
     # modelName = "gpt2"
-    modelName = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+    modelName = "bartowski/gemma-2-9b-it-GGUF"
+    modelFile = "gemma-2-9b-it-Q6_K.gguf"
+    # modelName = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
     fileName = "model.pth"
     device = "cuda"
 
-    model = AutoModelForCausalLM.from_pretrained(modelName,
-                                                 torch_dtype=torch.float16,  # quantize to 16 bit
+    '''quantConfig = BitsAndBytesConfig(load_in_8bit=True,
+                                     llm_int8_threshold=6.0,  # default
+                                     llm_int8_skip_modules=None,
+                                     llm_int8_enable_fp32_cpu_offload=True)'''
+
+    '''model = AutoModelForCausalLM.from_pretrained(modelName,
+                                                 gguf_file=modelFile,
+                                                 # quantization_config=quantConfig,  # quantize to 4 bit
+                                                 # torch_dtype=torch.float32,
                                                  device_map="cuda",  # allow to go on to both cpu and gpu
                                                  trust_remote_code=True)
 
-    tokenizer = AutoTokenizer.from_pretrained(modelName)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.1)
+    tokenizer = AutoTokenizer.from_pretrained(modelName, gguf_file=modelFile)'''
+
+    model = Llama(
+        model_path=modelFile,
+        n_ctx=2048,  # This shouldn't be loaded manually but the auto assinging of context keep getting it wrong
+        device=device,
+        n_gpu_layers=41,  # Literaly all but 1 layer, if you have 12GB VRAM or just have a less bloated Desktop enviroment you can set this = -1
+        f16_kv=True
+    )
+
+    '''optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.1)
 
     config = AutoConfig.from_pretrained(modelName)
 
@@ -331,25 +353,35 @@ if __name__ == "__main__":
         num_workers=numWorkers
     )
 
-    trainLosses, valLosses, tokensSeen = trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs=args.nEpochs, evalFreq=args.evalFreq, evalIter=5, startContext=formatInput(valData[0]), tokenizer=tokenizer, printSampleIter=args.printSampleIter, outputDir=args.outputDir, saveCkptFreq=args.saveCkptFreq)
+    trainLosses, valLosses, tokensSeen = trainModelSimple(model, trainLoader, valLoader, optimizer, device, numEpochs=args.nEpochs, evalFreq=args.evalFreq, evalIter=5, startContext=formatInput(valData[0]), tokenizer=tokenizer, printSampleIter=args.printSampleIter, outputDir=args.outputDir, saveCkptFreq=args.saveCkptFreq)'''
 
     userPrompt = input("Input your prompt:\n")
 
     while userPrompt != "!quit":
-        # inputTokens = textToToken("### Instruction: \nWrite a simple C program that prints Hello, World! to the console. Keep it basic and do not include file operations or unnecessary complexity.\n### Response:", tokenizer).to(device)
-        model.to("cpu")
+        # inputTokens = textToToken("### Instruction: \nWrite a simple C program that prints Hello, World! to the console. Keep it basic and do not include file operations or unnecessary complexity.\n### Response:", tokenizer).to(device#)
+        # model.to("cpu")
         userPrompt = formatUserPrompt(userPrompt)
-        model.to(device)
-        inputTokens = textToToken(userPrompt, tokenizer).to(device)
+        # model.to("cuda")
+        # inputTokens = textToToken(userPrompt, tokenizer).to(device)  #Huggin Faace version
+        '''inputTokens = textToToken(userPrompt, model).to(device)
 
         response = genTextSimple(model,
                                  idx=inputTokens,
                                  maxNewTokens=2000,
-                                 contextSize=config.max_position_embeddings,
-                                 eosId=tokenizer.eos_token_id,
+                                 contextSize=config.max_position_embeddings,  #Hugging Face version
+                                 eosId=tokenizer.eos_token_id,  #Hugging Face version
                                  temp=.95,
                                  topK=50)
 
-        print("\n" + tokenToText(response, tokenizer) + "\n")
+        print("\n" + tokenToText(response, tokenizer) + "\n")  # Hugging face version'''
+        response = model.create_completion(
+            prompt=userPrompt,
+            max_tokens=1000,
+            temperature=0.7,
+            # stop=["\n"]
+        )
+        print("\n" + response["choices"][0]["text"] + "\n")
 
         userPrompt = input("Input your prompt:\n")
+
+    model.close()
